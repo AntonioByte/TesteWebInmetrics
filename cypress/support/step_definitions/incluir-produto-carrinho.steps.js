@@ -1,28 +1,22 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-Given(/^que estou na página de detalhes do produto "([^"]*)"$/, (nomeProduto) => {
+Given(/^que pesquiso pelo produto "([^"]*)"$/, (termoBusca) => {
   // Navegar para a página de produtos
-  cy.visit('https://www.automationexercise.com/products');
-  
+  cy.visit('/products');
   // Buscar e clicar no produto específico
-  cy.get('.single-products').contains(nomeProduto).click();
-  
-  // Verificar se está na página de detalhes
-  cy.url().should('include', '/product_details');
+  cy.get('#search_product').type(termoBusca);
+  cy.get('#submit_search').click();
+ 
 });
 
-// When(/^clico no botão "([^"]*)"$/, (botao) => {
-//   if (botao === "Adicionar ao Carrinho") {
-//     cy.get('.add-to-cart').click();
-//   }
-// });
-// Agora este comando está em comandos-comuns.steps.js
+
+ When(/^clico no botão Adicionar ao Carrinho$/, () => {
+  cy.contains('Add to cart').click();
+});
+
 
 Then(/^devo ver uma notificação de que o produto foi adicionado ao carrinho$/, () => {
   cy.get('.modal-content').should('be.visible');
   cy.get('.modal-content').should('contain', 'Added!');
 });
 
-Then(/^o ícone do carrinho deve exibir a quantidade de "([^"]*)"$/, (quantidade) => {
-  cy.get('.badge').should('contain', quantidade);
-}); 

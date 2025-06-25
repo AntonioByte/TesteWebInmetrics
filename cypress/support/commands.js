@@ -23,10 +23,3 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-
-//Comando para clique de botões
-Cypress.Commands.add('cliqueBotao', (botao) => { 
-    When(/^clico no botão "([^"]*)"$/, (bo) => {
-        cy.contains('button', botao).click();
-    });
-})

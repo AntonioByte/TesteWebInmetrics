@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 Given(/^que estou na página de login$/, () => {
-	cy.visit('https://www.automationexercise.com/login');
+	cy.visit('/login');
 });
 
 When(/^insiro "([^"]*)" no campo de email$/, (email) => {
@@ -9,7 +9,7 @@ When(/^insiro "([^"]*)" no campo de email$/, (email) => {
 });
 
 When(/^insiro "([^"]*)" no campo de senha$/, (senha) => {
-	cy.get('[data-qa="login-password"]').type(senha);
+	cy.get('[data-qa="login-password"]').type(senha, {log:false});
 });
 
 // When(/^clico no botão "([^"]*)"$/, (botao) => {

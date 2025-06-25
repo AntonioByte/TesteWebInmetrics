@@ -1,16 +1,18 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-Given(/^que adicionei os produtos "([^"]*)" e "([^"]*)" ao meu carrinho$/, (produto1, produto2) => {
+Given(/^adicionei os produtos "([^"]*)" e "([^"]*)" ao meu carrinho$/, (produto1, produto2) => {
   // Adicionar primeiro produto
-  cy.visit('https://www.automationexercise.com/products');
-  cy.get('.single-products').contains(produto1).click();
-  cy.get('.add-to-cart').click();
+  cy.visit('/products');
+  cy.get('#search_product').type(produto1);
+  cy.get('#submit_search').click();
+  cy.contains('.single-products', produto1).contains('Add to cart').click()
   cy.get('.btn-success').click(); // Continuar comprando
   
   // Adicionar segundo produto
-  cy.visit('https://www.automationexercise.com/products');
-  cy.get('.single-products').contains(produto2).click();
-  cy.get('.add-to-cart').click();
+  cy.visit('/products');
+  cy.get('#search_product').type(produto2);
+  cy.get('#submit_search').click();
+  cy.contains('.single-products', produto2).contains('Add to cart').click()
   cy.get('.btn-success').click(); // Continuar comprando
 });
 
@@ -19,8 +21,8 @@ When(/^navego para a tela de pagamento$/, () => {
   cy.get('.check_out').click();
 });
 
-Then(/^devo ver "([^"]*)" listada com o preço correto$/, (nomeProduto) => {
-  cy.get('.cart_description').should('contain', nomeProduto);
+Then(/^devo ver "([^"]*) listado com o preço correto$/, (produto) => {
+  cy.get('.cart_description').should('contain', produto);
   cy.get('.cart_price').should('be.visible');
 });
 
