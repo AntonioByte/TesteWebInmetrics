@@ -11,8 +11,9 @@ Cenário: Produtos corretos exibidos na tela de pagamento
   E insiro "bacuse@teste.com.br" no campo de email
   E insiro "teste" no campo de senha
   E clico no botão "Login"
-  E adicionei os produtos "Premium Polo T-Shirts" e "Soft Stretch Jeans" ao meu carrinho
+  E adicionei o produto "Premium Polo T-Shirts" ao meu carrinho
+  E adicionei o produto "Soft Stretch Jeans" ao meu carrinho
   Quando navego para a tela de pagamento
-  Então devo ver "Premium Polo T-Shirts" listada com o preço correto
-  E devo ver "Soft Stretch Jeans" listada com o preço correto
-  E o valor total deve ser a soma dos preços dos produtos no carrinho 
+  Então devo ver o produto "Premium Polo T-Shirts" listado com o preço correto
+  E devo ver o produto "Soft Stretch Jeans" listado com o preço correto
+  
